@@ -1,0 +1,36 @@
+@startuml synchronization
+
+actor Player
+control WebApp
+control VersaIO
+collections Ruleset
+collections EventQueueManager
+collections EventQueue
+entity Event
+database GameDB
+
+Player -> WebApp: Log In
+Player -> WebApp: Command Input
+WebApp -> VersaIO: Send Text, File URLs, and FileStreams 
+VersaIO -> VersaIO: Tokenize input.
+VersaIO -> Ruleset: Forward tokenized input to check for event
+Ruleset -> Ruleset: Check if an event actually exists for the input
+Ruleset -> Ruleset: Build list of functions that check if the event can actually run
+Ruleset -> Ruleset: Fetch the function that actually runs for the parsed event
+Ruleset -> EventQueueManager: Parsed Event
+EventQueueManager -> EventQueue: Select Correct Scenario
+EventQueue -> Event: Signal resource prefetch
+EventQueue -> EventQueue: Wait for Ok to Start
+Event -> GameDB: Request necessary objects
+GameDB -> Event: Return Necessary Objects
+EventQueue -> Event: Run preloaded list
+Event -> EventQueue: If all true, can run
+EventQueue -> Event: Signal action to run
+Event -> Event: Perform pre-assigned run action
+Event -> EventQueue: Sync done, can run next event
+Event -> GameDB: Event completed, store results
+Event -> VersaIO: Return results async
+VersaIO -> WebApp: Return Changes
+WebApp -> Player: Display Results
+
+@enduml

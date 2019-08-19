@@ -1,0 +1,27 @@
+@startuml
+interface ICommandGroup {
+    FriendlyName : string <<get>>
+    Prefix : string <<get>>
+    TryAdd(command:IVersaCommand) : bool
+    TryRemove(command:IVersaCommand) : bool
+    Tag : string <<get>>
+    TryFindCommand(externalPrefix:string, e:IMessageEvent, command:IVersaCommand, commandMatchString:string) : bool
+}
+class CommandExecOrderer {
+    + Compare(x:IVersaCommand, y:IVersaCommand) : int
+    + Compare(x:string, y:string) : int
+    + Compare(x:ICommandGroup, y:ICommandGroup) : int
+}
+class "IEnumerable`1"<T> {
+}
+class "ICollection`1"<T> {
+}
+class "IComparer`1"<T> {
+}
+"IEnumerable`1" "<IVersaCommand>" <|-- ICommandGroup
+ICommandGroup --> "AllCommandsFullPaths<IVersaCommand>" "IEnumerable`1"
+ICommandGroup --> "Preconditions<RulesOfNature.IConditionalRule>" "ICollection`1"
+"IComparer`1" "<IVersaCommand>" <|-- CommandExecOrderer
+"IComparer`1" "<string>" <|-- CommandExecOrderer
+"IComparer`1" "<ICommandGroup>" <|-- CommandExecOrderer
+@enduml

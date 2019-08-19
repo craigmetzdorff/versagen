@@ -1,0 +1,10 @@
+@startuml 
+
+actor Players
+actor GameMaster
+actor ScenarioWriter
+actor Game Developers
+
+database SQLServer
+
+@enduml

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-model type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<xs:schema id="Stat"
+    targetNamespace="versagen"
+    elementFormDefault="qualified"
+    xmlns="versagen"
+    xmlns:mstns="versagen"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns:sch="http://www.ascc.net/xml/schematron"
+>
+  <xs:include schemaLocation="Condition.xsd"/>
+  <xs:element name="statDef">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="name" type="xs:QName" />
+        <xs:element name="cap" default="100">
+          <xs:simpleType>
+            <xs:restriction base="xs:int">
+              <xs:minInclusive value="0" />
+            </xs:restriction>
+          </xs:simpleType>
+        </xs:element>
+        <xs:element name="statType" default="static">
+          <xs:simpleType>
+            <xs:restriction base="xs:string">
+              <!--Standard stat; one value that is only changed by modifiers.-->
+              <xs:enumeration value="static"/>
+              <!--Counts down from given vbalue to 0, like health.-->
+              <xs:enumeration value="depletable" />
+              <!--You have it or you don't; 0 is false, everything else is true.-->
+              <xs:enumeration value="trueFalse" />
+            </xs:restriction>
+          </xs:simpleType>
+        </xs:element>
+        <xs:element name="condition" type="condition" minOccurs="0" maxOccurs="unbounded" />
+        <xs:element name="conditionRef" type="xs:QName" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="stat">
+    <xs:sequence>
+      <xs:element name="statName" type="xs:QName"/>
+      <xs:element name="absoluteSet" type="xs:boolean" />
+      <xs:element name="maxValue">
+        <xs:simpleType>
+          <xs:restriction base="xs:int">
+            <xs:minInclusive value="0" />
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>  
+      <xs:element name="value" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

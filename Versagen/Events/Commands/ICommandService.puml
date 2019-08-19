@@ -1,0 +1,21 @@
+@startuml
+interface ICommandService {
+    GlobalPrefix : string <<get>>
+    AddCommandGroup(group:ICommandGroup) : IDisposable
+    RemoveCommandGroup(group:ICommandGroup) : bool
+    TryFindCommand(e:IMessageEvent, command:IVersaCommand, matchedCommandText:string) : bool
+}
+class "IObservable`1"<T> {
+}
+class "IObserver`1"<T> {
+}
+class "IEnumerable`1"<T> {
+}
+IDisposable <|-- ICommandService
+"IObservable`1" "<CommandRunStateEventArgs>" <|-- ICommandService
+"IObserver`1" "<IEvent>" <|-- ICommandService
+"IEnumerable`1" "<ICommandGroup>" <|-- ICommandService
+ICommandService --> "Groups<ICommandGroup>" "IEnumerable`1"
+ICommandService --> "AllCommands<IVersaCommand>" "IEnumerable`1"
+ICommandService --> "DefaultGroup" ICommandGroup
+@enduml

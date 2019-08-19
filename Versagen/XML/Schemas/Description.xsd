@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="Description"
+    targetNamespace="versagen"
+    elementFormDefault="qualified"
+    xmlns="versagen"
+    xmlns:mstns="versagen"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+>
+  <xs:include schemaLocation="Resource.xsd" />
+  <xs:element name="description" type="description"/>
+    <xs:complexType name="description" mixed="true">
+      <xs:sequence>
+        <!--Can subsitute current data; this needs to be defined by some sort of dictionary.-->
+        <xs:element name="substitution" minOccurs="0" maxOccurs="unbounded">
+          <xs:complexType>
+            <xs:attribute name="subvalue" type="xs:string"/>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="resource" type="resource" />
+      </xs:sequence>
+      <xs:attribute name="conditionRef" type="xs:normalizedString" use="optional"/>
+    </xs:complexType>
+</xs:schema>

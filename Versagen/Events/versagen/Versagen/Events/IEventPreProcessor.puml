@@ -1,0 +1,11 @@
+@startuml
+interface "IEventPreProcessor`1"<T> {
+    <<new>> PreProcessAsync(newEvent:TI) : Task<TI>
+    <<new>> PreProcess(newEvent:TI) : TI
+}
+interface IEventPreprocessor {
+    PreProcessAsync(newEvent:T) : Task<T>
+    PreProcess(newEvent:T) : T
+}
+IEventPreprocessor <|-- "IEventPreProcessor`1"
+@enduml

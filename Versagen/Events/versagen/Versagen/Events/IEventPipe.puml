@@ -1,0 +1,19 @@
+@startuml
+interface IEventPipe {
+    SubscribePreprocess(preprocessor:IObserver<IEvent, IEvent>) : IDisposable
+    Complete() : void
+    RunExclusiveOperation(action:Action) : Task
+    RunExclusiveOperation(action:Action, token:CancellationToken) : Task
+    ChainEvent(evnt:IEvent, doPreprocess:bool) : Task
+    ProcessEvent(evnt:IEvent) : Task
+}
+class "IObservable`1"<T> {
+}
+ICancelable <|-- IEventPipe
+IEventPipe --> "ObserveFirst<IEvent>" "IObservable`1"
+IEventPipe --> "ObserveConcurrent<IEvent>" "IObservable`1"
+IEventPipe --> "ObserveSynchronous<IEvent>" "IObservable`1"
+IEventPipe --> "MainToken" CancellationToken
+IEventPipe --> "ExclusionLocker" AsyncLock
+IEventPipe --> "ExclusiveScheduler" TaskScheduler
+@enduml

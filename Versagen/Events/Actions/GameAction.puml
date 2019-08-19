@@ -1,0 +1,22 @@
+@startuml
+class LambdaEventReaction {
+    + LambdaEventReaction(tag:string, runPredicate:Func<IEvent, bool>, reactFunc:Func<IEvent, Task>)
+    + SingleSubscribe(observable:IObservable<IEvent>) : void
+    + Tag : string <<get>>
+    # <<override>> OnErrorCore(error:Exception) : void
+    # <<override>> OnCompletedCore() : void
+    # <<override>> <<async>> OnNextCore(value:IEvent) : void
+    OnError(error:Exception) : void
+    + <<virtual>> OnNext(value:CommandRunStateEventArgs) : void
+    OnCompleted() : void
+}
+class "ObserverBase`1"<T> {
+}
+class "Func`2"<T1,T2> {
+}
+"ObserverBase`1" "<IEvent>" <|-- LambdaEventReaction
+IReaction <|-- LambdaEventReaction
+LambdaEventReaction --> "_runAt<IEvent,bool>" "Func`2"
+LambdaEventReaction --> "_runThis<IEvent,Task>" "Func`2"
+LambdaEventReaction o-> "_subscriberThing" IDisposable
+@enduml

@@ -1,0 +1,1 @@
+﻿The classes in this file are all part of a single library found in the location described in the files. They are only here as a workaround for a single issue and should not be used for any other purpose.

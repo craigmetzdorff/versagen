@@ -1,0 +1,42 @@
+@startuml
+class EventPipe {
+    - _isCompleted : bool
+    - _gate : object
+    + IsDisposed : bool <<get>> <<protected set>>
+    + ChainEvent(evnt:IEvent, doPreprocess:bool) : Task
+    + Dispose() : void
+    + <<virtual>> ProcessEvent(evnt:IEvent) : Task
+    + Complete() : void
+    + RunExclusiveOperation(action:Action, cancelToken:CancellationToken) : Task
+    + RunExclusiveOperation(action:Action) : Task
+    + SubscribePreprocess(observer:IObserver<IEvent, IEvent>) : IDisposable
+    # <<virtual>> Dispose(disposing:bool) : void
+    + EventPipe(onReceiveScheduler:IScheduler)
+    + EventPipe()
+}
+class "Subject`1"<T> {
+}
+class "ConcurrentDictionary`2"<T1,T2> {
+}
+class "IObservable`1"<T> {
+}
+IEventPipe <|-- EventPipe
+EventPipe --> "_allScheduler" TaskPoolScheduler
+EventPipe --> "_allSubject<IEvent>" "Subject`1"
+EventPipe --> "_incomingEventSubject<(IEvent @event, bool doPreProcessing)>" "Subject`1"
+EventPipe --> "_initialScheduler" IScheduler
+EventPipe --> "_readerScheduler" TaskPoolScheduler
+EventPipe --> "_readSubject<IEvent>" "Subject`1"
+EventPipe --> "_syncContext" SynchronizationContext
+EventPipe --> "_tpschedPair" ConcurrentExclusiveSchedulerPair
+EventPipe --> "_writeSubject<IEvent>" "Subject`1"
+EventPipe --> "exFactory" TaskFactory
+EventPipe o-> "_preProcessing<IObserver<IEvent, IEvent>,IDisposable>" "ConcurrentDictionary`2"
+EventPipe o-> "ExclusionLocker" AsyncLock
+EventPipe --> "MainToken" CancellationToken
+EventPipe --> "ObserveConcurrent<IEvent>" "IObservable`1"
+EventPipe --> "ObserveFirst<IEvent>" "IObservable`1"
+EventPipe --> "ObserveSynchronous<IEvent>" "IObservable`1"
+EventPipe --> "TokenSource" CancellationTokenSource
+EventPipe --> "ExclusiveScheduler" TaskScheduler
+@enduml

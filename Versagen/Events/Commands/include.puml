@@ -1,0 +1,17 @@
+@startuml
+!include .\.\versagen\Versagen\Events\Commands\CommandContextBase.puml
+!include .\.\versagen\Versagen\Events\Commands\CommandGroup.puml
+!include .\.\versagen\Versagen\Events\Commands\CommandRunStateEventArgs.puml
+!include .\.\versagen\Versagen\Events\Commands\CommandService.puml
+!include .\.\versagen\Versagen\Events\Commands\CrossCommandStorage.puml
+!include .\.\versagen\Versagen\Events\Commands\ICommandBuilder.puml
+!include .\.\versagen\Versagen\Events\Commands\ICommandContext.puml
+!include .\.\versagen\Versagen\Events\Commands\ICommandContextBuilder.puml
+!include .\.\versagen\Versagen\Events\Commands\ICommandContextFactory.puml
+!include .\.\versagen\Versagen\Events\Commands\ICommandGroup.puml
+!include .\.\versagen\Versagen\Events\Commands\ICommandService.puml
+!include .\.\versagen\Versagen\Events\Commands\ICrossCommandStorage.puml
+!include .\.\versagen\Versagen\Events\Commands\IVersaCommand.puml
+!include .\.\versagen\Versagen\Events\Commands\VersaCommand.puml
+!include .\.\versagen\Versagen\Events\Commands\VersaCommandBase.puml
+@enduml

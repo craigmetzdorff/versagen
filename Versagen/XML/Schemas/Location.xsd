@@ -1,0 +1,89 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="Location"
+    targetNamespace="versagen"
+    elementFormDefault="qualified"
+    xmlns="versagen"
+    xmlns:mstns="versagen"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+>
+  <xs:include schemaLocation="Condition.xsd"/>
+  <xs:include schemaLocation="Description.xsd"/>
+  <xs:include schemaLocation="Effect.xsd"/>
+  <xs:include schemaLocation="InGameType.xsd"/>
+  <xs:include schemaLocation="Inventory.xsd"/>
+  <xs:element name="location" type="location"/>
+  <xs:complexType name="location" abstract="true">
+    <xs:sequence>
+      <xs:element name="condition" type="condition" minOccurs="0" maxOccurs="unbounded"/>
+      <xs:element name="description" minOccurs="1" maxOccurs="unbounded">
+        <xs:complexType>
+          <xs:complexContent mixed="false">
+            <xs:extension base="description">
+              <xs:attribute name="descritpionType" default="append" use="optional">
+                <xs:simpleType>
+                  <xs:restriction base="xs:normalizedString">
+                    <xs:enumeration value="append"/>
+                    <xs:enumeration value="replace"/>
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:attribute>
+            </xs:extension>
+          </xs:complexContent>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="sublocation" minOccurs="0" maxOccurs="unbounded" >
+        <xs:complexType>
+          <xs:complexContent mixed="false">
+            <xs:extension base="location">
+              <xs:sequence minOccurs="0" maxOccurs="1">
+                <xs:element name="displayName" type="xs:string" minOccurs="0" maxOccurs="1" />
+                <xs:element name="narrationNotes" type="xs:string" nillable="true" minOccurs="0" maxOccurs="1" />
+              </xs:sequence>
+              <xs:attribute name="entryCondition" type="xs:normalizedString"/>
+              <xs:attribute name="allowReturnToParent" type="xs:boolean"/>
+            </xs:extension>
+          </xs:complexContent>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="presentItem" type="item" minOccurs="0" maxOccurs="unbounded" />
+      <xs:element name="entity" type="entity" maxOccurs="unbounded" minOccurs="0"/>
+      <xs:element name="extraData">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:any namespace="##targetNamespace"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="locationReference">
+    <xs:complexContent mixed="false">
+      <xs:extension base="location">
+        <xs:sequence>
+          <xs:element name="displayName" type="xs:string" minOccurs="0" maxOccurs="1" />
+          <xs:element name="narrationNotes" type="xs:string" minOccurs="0" maxOccurs="1"  />
+        </xs:sequence>
+        <xs:attribute name="refFromLocaion" type="xs:normalizedString"/>
+        <xs:attribute name="overrideModeDefault" default="append">
+          <xs:simpleType>
+            <xs:restriction base="xs:normalizedString">
+              <xs:enumeration value="replace"/>
+              <xs:enumeration value="append"/>
+            </xs:restriction>
+          </xs:simpleType>
+        </xs:attribute>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="locationDefinition">
+    <xs:complexContent mixed="false">
+      <xs:extension base="location">
+        <xs:sequence>
+          <xs:element name="displayName" type="xs:string"/>
+          <xs:element name="narrationNotes" type="xs:string" nillable="true"/>
+        </xs:sequence>
+        <xs:attribute name="name" type="xs:QName"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+</xs:schema>

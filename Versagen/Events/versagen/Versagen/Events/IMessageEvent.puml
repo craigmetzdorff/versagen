@@ -1,0 +1,6 @@
+@startuml
+interface IMessageEvent {
+    FullMessage : string <<get>> <<set>>
+}
+IEvent <|-- IMessageEvent
+@enduml

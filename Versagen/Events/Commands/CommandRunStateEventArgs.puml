@@ -1,0 +1,17 @@
+@startuml
+enum ECommandState {
+    FoundCommand,
+    BeforeContextConstruction,
+    Preconditions,
+    PostCommand,
+}
+class CommandRunStateEventArgs {
+    + HasException : bool <<get>>
+    + CommandRunStateEventArgs(@event:IEvent, command:IVersaCommand, context:ICommandContext, state:ECommandState, commandException:Exception)
+}
+CommandRunStateEventArgs --> "Event" IEvent
+CommandRunStateEventArgs --> "Command" IVersaCommand
+CommandRunStateEventArgs --> "Context" ICommandContext
+CommandRunStateEventArgs --> "State" ECommandState
+CommandRunStateEventArgs --> "CommandException" Exception
+@enduml

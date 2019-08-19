@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="Inventory"
+    targetNamespace="versagen"
+    elementFormDefault="qualified"
+    xmlns="versagen"
+    xmlns:mstns="versagen"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+>
+  <xs:include schemaLocation="InGameType.xsd" />
+  <xs:include schemaLocation="Location.xsd" />
+  <xs:include schemaLocation="Description.xsd" />
+  <xs:include schemaLocation="refTo.xsd" />
+  <xs:element name="Story">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="name" type="xs:normalizedString" />
+        <xs:element name="plotDescription" type="description" />
+        <xs:choice>
+          <xs:element name="numberUsers" type="xs:unsignedShort"/>
+          <xs:sequence>
+            <xs:element name="minUsers" type="xs:unsignedShort" />
+            <xs:element name="maxUsers" type="xs:unsignedShort" />
+          </xs:sequence>
+        </xs:choice>
+        <xs:element name="charsPerUser" type="xs:unsignedShort" minOccurs="0" />
+        <xs:element name="maxInParty" type="xs:unsignedShort" minOccurs="0" />
+        <xs:element name="clearCondition" type="condition" maxOccurs="unbounded" />
+        <xs:choice>
+          <xs:element name="locationTree" type="location" minOccurs="0" />
+          <xs:element ref="refTo" maxOccurs="unbounded"/>
+        </xs:choice>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="startHere" />
+</xs:schema>

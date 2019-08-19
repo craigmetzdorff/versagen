@@ -1,0 +1,81 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27703.2035
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Versagen", "Versagen\Versagen.csproj", "{327348AF-44C8-4E58-91C5-2059D7444C40}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Versagen.DefaultImplementations", "Versagen.DefaultImplementations\Versagen.DefaultImplementations.csproj", "{D4DF899F-6344-4235-8EE2-724565843DA6}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Versagen.Tests", "Versagen.Tests\Versagen.Tests.csproj", "{C46BA03B-82A4-47C3-921E-887273182B72}"
+	ProjectSection(ProjectDependencies) = postProject
+		{D4DF899F-6344-4235-8EE2-724565843DA6} = {D4DF899F-6344-4235-8EE2-724565843DA6}
+		{327348AF-44C8-4E58-91C5-2059D7444C40} = {327348AF-44C8-4E58-91C5-2059D7444C40}
+	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Versagen.DefaultImplementations.Tests", "Versagen.DefaultImplementations.Tests\Versagen.DefaultImplementations.Tests.csproj", "{2F3C74E5-281E-45FA-9EFA-387742A25271}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Versagen.ASPNET", "Versagen.ASPNET\Versagen.ASPNET.csproj", "{28088505-F83D-4EE7-8ECC-B90C63A650E3}"
+	ProjectSection(ProjectDependencies) = postProject
+		{D4DF899F-6344-4235-8EE2-724565843DA6} = {D4DF899F-6344-4235-8EE2-724565843DA6}
+		{327348AF-44C8-4E58-91C5-2059D7444C40} = {327348AF-44C8-4E58-91C5-2059D7444C40}
+	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Versagen.ASPNET.SignalR", "Versagen.ASPNET.SignalR\Versagen.ASPNET.SignalR.csproj", "{E444E603-5727-4F99-BDC4-80BB3A49FF52}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Versagen.ASPNET.Identity", "Versagen.ASPNET.Identity\Versagen.ASPNET.Identity.csproj", "{B33C42F9-0B8F-4F4D-8A4E-F7C39F3CD7A8}"
+	ProjectSection(ProjectDependencies) = postProject
+		{28088505-F83D-4EE7-8ECC-B90C63A650E3} = {28088505-F83D-4EE7-8ECC-B90C63A650E3}
+		{DE670C24-5EE4-4D04-9885-61880D44FA04} = {DE670C24-5EE4-4D04-9885-61880D44FA04}
+		{D4DF899F-6344-4235-8EE2-724565843DA6} = {D4DF899F-6344-4235-8EE2-724565843DA6}
+		{327348AF-44C8-4E58-91C5-2059D7444C40} = {327348AF-44C8-4E58-91C5-2059D7444C40}
+	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Versagen.EntityFramework", "Versagen.EntityFramework\Versagen.EntityFramework.csproj", "{DE670C24-5EE4-4D04-9885-61880D44FA04}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{327348AF-44C8-4E58-91C5-2059D7444C40}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{327348AF-44C8-4E58-91C5-2059D7444C40}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{327348AF-44C8-4E58-91C5-2059D7444C40}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{327348AF-44C8-4E58-91C5-2059D7444C40}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D4DF899F-6344-4235-8EE2-724565843DA6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D4DF899F-6344-4235-8EE2-724565843DA6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D4DF899F-6344-4235-8EE2-724565843DA6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D4DF899F-6344-4235-8EE2-724565843DA6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C46BA03B-82A4-47C3-921E-887273182B72}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C46BA03B-82A4-47C3-921E-887273182B72}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C46BA03B-82A4-47C3-921E-887273182B72}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C46BA03B-82A4-47C3-921E-887273182B72}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2F3C74E5-281E-45FA-9EFA-387742A25271}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2F3C74E5-281E-45FA-9EFA-387742A25271}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2F3C74E5-281E-45FA-9EFA-387742A25271}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2F3C74E5-281E-45FA-9EFA-387742A25271}.Release|Any CPU.Build.0 = Release|Any CPU
+		{28088505-F83D-4EE7-8ECC-B90C63A650E3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{28088505-F83D-4EE7-8ECC-B90C63A650E3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{28088505-F83D-4EE7-8ECC-B90C63A650E3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{28088505-F83D-4EE7-8ECC-B90C63A650E3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E444E603-5727-4F99-BDC4-80BB3A49FF52}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E444E603-5727-4F99-BDC4-80BB3A49FF52}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E444E603-5727-4F99-BDC4-80BB3A49FF52}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E444E603-5727-4F99-BDC4-80BB3A49FF52}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B33C42F9-0B8F-4F4D-8A4E-F7C39F3CD7A8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B33C42F9-0B8F-4F4D-8A4E-F7C39F3CD7A8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B33C42F9-0B8F-4F4D-8A4E-F7C39F3CD7A8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B33C42F9-0B8F-4F4D-8A4E-F7C39F3CD7A8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DE670C24-5EE4-4D04-9885-61880D44FA04}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DE670C24-5EE4-4D04-9885-61880D44FA04}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DE670C24-5EE4-4D04-9885-61880D44FA04}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DE670C24-5EE4-4D04-9885-61880D44FA04}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {98219DFF-A449-48A2-A72C-57CB4B76C55D}
+	EndGlobalSection
+EndGlobal

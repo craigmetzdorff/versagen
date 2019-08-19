@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="Inventory"
+    targetNamespace="versagen"
+    elementFormDefault="qualified"
+    xmlns="versagen"
+    xmlns:mstns="versagen"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+>
+  <xs:include schemaLocation="Description.xsd" />
+  <xs:include schemaLocation="Action.xsd" />
+  <xs:include schemaLocation="Condition.xsd" />
+  <xs:include schemaLocation="Effect.xsd" />
+  <xs:element name="WorthyInventory" type="inventory"/>
+  <xs:complexType name="inventory">
+    <xs:sequence>
+      <xs:element name="item" type="item" minOccurs="0" maxOccurs="unbounded" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="item" type="item" />
+  <xs:complexType name="item">
+    <xs:choice minOccurs="0" maxOccurs="unbounded">
+      <xs:element name="description" type="description" />
+      <xs:element name="holdEffect" type="effect" minOccurs="0" maxOccurs="unbounded" />
+      <xs:element name="action" type="action" minOccurs="0" maxOccurs="unbounded" />
+    </xs:choice>
+    <xs:attribute name="TypeName" type="xs:normalizedString" use="required"/>
+    <xs:attribute name="SpecialName" type="xs:normalizedString" use="optional"/>
+    <xs:attribute name="TypeRef" type="xs:normalizedString" use="optional"/>
+  </xs:complexType>
+</xs:schema>

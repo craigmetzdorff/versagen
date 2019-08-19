@@ -1,0 +1,28 @@
+@startuml
+enum VersaComCallMethods {
+    Lambda,
+    MethodInfo,
+    MethodInfoAndClass,
+}
+interface "ICommandBuilder`2"<C,out V> {
+    CallLine : string <<get>> <<set>>
+    Description : string <<get>> <<set>>
+    Name : string <<get>> <<set>>
+    RunSynchronously : bool <<get>> <<set>>
+    SplitOn : char <<get>> <<set>>
+    UsingTransientClass(methodToCall:Func<T, Func<C, Task>>, additionalConstructorArgs:object[]) : ICommandBuilder<C, V>
+    Build() : V
+}
+class "IVersaCommand`1"<T> {
+}
+class "Func`2"<T1,T2> {
+}
+class "List`1"<T> {
+}
+"ICommandBuilder`2" --> "ChatContext" ECommandRunSpace
+"ICommandBuilder`2" --> "Do<C,Task>" "Func`2"
+"ICommandBuilder`2" --> "Predicates<IConditionalRule>" "List`1"
+"ICommandBuilder`2" --> "RequiredPrivilegdes" EVersaPerms
+"ICommandBuilder`2" --> "TansientClassNeeded" Type
+"ICommandBuilder`2" --> "TransientClassMethod<IDisposable,Func<C, Task>>" "Func`2"
+@enduml

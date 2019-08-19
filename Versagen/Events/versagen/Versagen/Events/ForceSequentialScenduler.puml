@@ -1,0 +1,21 @@
+@startuml
+class SingleActionScheduler {
+    - EntryGate : object
+    - FinalGate : object
+    + <<override>> Schedule(state:TState, dueTime:TimeSpan, action:Func<IScheduler, TState, IDisposable>) : IDisposable
+    - <<async>> DeQueueAll() : Task
+    - DequeueLoopRunner() : Task
+    + SingleActionScheduler(exclusiveScheduler:TaskScheduler)
+    + Dispose() : void
+    + IsDisposed : bool <<get>>
+}
+class "SchedulerQueue`1"<T> {
+}
+LocalScheduler <|-- SingleActionScheduler
+ICancelable <|-- SingleActionScheduler
+SingleActionScheduler --> "_sQueue<TimeSpan>" "SchedulerQueue`1"
+SingleActionScheduler o-> "slimGate" SemaphoreSlim
+SingleActionScheduler --> "DeQueueLoop" Task
+SingleActionScheduler o-> "manEv" AsyncManualResetEvent
+SingleActionScheduler --> "ExclusiveScheduler" TaskScheduler
+@enduml

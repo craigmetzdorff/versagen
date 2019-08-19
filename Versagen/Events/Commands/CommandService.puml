@@ -1,0 +1,33 @@
+@startuml
+class CommandService {
+    + Subscribe(observer:IObserver<CommandRunStateEventArgs>) : IDisposable
+    - <<readonly>> _gate : object
+    + Dispose() : void
+    + OnCompleted() : void
+    + OnError(error:Exception) : void
+    + <<async>> OnNext(value:IEvent) : void
+    + GetEnumerator() : IEnumerator<ICommandGroup>
+    GetEnumerator() : IEnumerator
+    + GlobalPrefix : string <<get>>
+    + AddCommandGroup(@group:ICommandGroup) : IDisposable
+    - RemoveCommandGroup(@group:ICommandGroup, fromDisposable:bool) : bool
+    + RemoveCommandGroup(@group:ICommandGroup) : bool
+    + <<virtual>> TryFindCommand(e:IMessageEvent, command:IVersaCommand, matchedCommandText:string) : bool
+    + <<virtual>> <<async>> RunSupportedCommand(@event:IMessageEvent, command:IVersaCommand, matchedCommandLine:string) : Task<(bool, Task<(bool, IConditionalRule, string)>)>
+    + <<async>> RunCommand(e:IEvent, context:CommandContext, command:IVersaCommand<CommandContext>, provider:IServiceProvider, additionalChecks:Func<Task<(bool passed, IConditionalRule rule, string failureReason)>>[]) : Task<(bool, IConditionalRule, string)>
+    + CommandService(globalPrefix:string, defaultCommands:IEnumerable<IVersaCommand>)
+    + CommandService(globalPrefix:string)
+}
+class "SubjectBase`1"<T> {
+}
+class "ImmutableSortedDictionary`2"<T1,T2> {
+}
+class "IEnumerable`1"<T> {
+}
+ICommandService <|-- CommandService
+CommandService --> "runStateArgs<CommandRunStateEventArgs>" "SubjectBase`1"
+CommandService --> "commandGroups<ICommandGroup,System.Reactive.Disposables.RefCountDisposable>" "ImmutableSortedDictionary`2"
+CommandService --> "Groups<ICommandGroup>" "IEnumerable`1"
+CommandService --> "AllCommands<IVersaCommand>" "IEnumerable`1"
+CommandService --> "DefaultGroup" ICommandGroup
+@enduml

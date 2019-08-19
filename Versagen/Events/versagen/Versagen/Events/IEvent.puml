@@ -1,0 +1,25 @@
+@startuml
+interface IEvent {
+    IgnoreThis : bool <<get>> <<set>>
+    IsSystemMessage : bool <<get>> <<set>>
+}
+class EventHelpers <<static>> {
+    + {static} GetPlayer(evnt:IEvent, GetPlayerFunc:Func<VersaCommsID, TPlayer>) : TPlayer
+    + {static} GetPlayerID(evnt:IEvent) : VersaCommsID
+    + {static} GetEntity(evnt:IEvent, getEntityFunc:Func<VersaCommsID, TEntity>) : TEntity
+    + {static} GetEntityID(evnt:IEvent) : VersaCommsID
+    + {static} GetScenario(evnt:IEvent, getScenarioFunction:Func<VersaCommsID, TScenario>) : TScenario
+    + {static} GetScenarioID(evnt:IEvent) : VersaCommsID
+}
+class "UnionType`2"<T1,T2> {
+}
+class "IList`1"<T> {
+}
+IEvent --> "SourcePipe" IEventPipe
+IEvent --> "Services" IServiceProvider
+IEvent --> "Scenario<VersaCommsID,IScenario>" "UnionType`2"
+IEvent --> "Terminal<VersaCommsID,IVersaWriter>" "UnionType`2"
+IEvent --> "Player<VersaCommsID,IPlayer>" "UnionType`2"
+IEvent --> "Entity<VersaCommsID,IEntity>" "UnionType`2"
+IEvent --> "EventSpecificCommands<ICommandGroup>" "IList`1"
+@enduml

@@ -1,0 +1,15 @@
+@startuml
+interface ICommandContext {
+    Message : string <<get>>
+    MessageRemainder : string <<get>>
+    ScenarioID : ulong <<get>>
+    AllowNewEvents() : void
+}
+IDisposable <|-- ICommandContext
+ICommandContext --> "Pipe" IEventPipe
+ICommandContext --> "User" IPlayer
+ICommandContext --> "ActingEntity" IEntity
+ICommandContext --> "OriginTerm" IVersaWriter
+ICommandContext --> "GMTerm" IVersaWriter
+ICommandContext --> "UserTerm" IVersaWriter
+@enduml

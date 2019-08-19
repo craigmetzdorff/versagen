@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="Roll"
+    targetNamespace="versagen"
+    elementFormDefault="qualified"
+    xmlns="versagen"
+    xmlns:mstns="versagen"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+>
+  <xs:element name="DiceRoll" type="roll"/>
+  <xs:complexType name="roll">
+    <xs:sequence>
+      <xs:element name="numberDice">
+        <xs:simpleType>
+          <xs:restriction base="xs:int">
+            <xs:minExclusive value="0" />
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="numberSides">
+        <xs:simpleType>
+          <xs:restriction base="xs:int">
+            <xs:minExclusive value="0" />
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="accumulate" type="xs:boolean" default="true" />
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

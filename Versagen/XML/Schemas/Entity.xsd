@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="InGameType"
+    targetNamespace="versagen"
+    elementFormDefault="qualified"
+    xmlns="versagen"
+    xmlns:mstns="versagen"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+>
+  <xs:include schemaLocation="Description.xsd" />
+  <xs:include schemaLocation="Inventory.xsd" />
+  <xs:include schemaLocation="Stat.xsd" />
+  <xs:include schemaLocation="condition.xsd" />
+  <xs:element name="entity" type="entity" />
+  <xs:complexType name="entity">
+    <xs:sequence>
+      <xs:element name="name" type="xs:normalizedString" />
+      <xs:element name="physicalDescription" type="description" minOccurs="1" maxOccurs="unbounded" />
+      <xs:element name="personality" type="description" minOccurs="1" maxOccurs="unbounded" />
+      <xs:element name="stat" type="stat" />
+      <xs:element name="inventory" type="inventory" nillable="true" />
+      <xs:element name="actionAndContext" minOccurs="0" maxOccurs="unbounded">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="action" type="action" />
+            <xs:element name="condition" type="condition" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+    <xs:attribute name="templateName" type="xs:QName" />
+    <xs:attribute name="entityName" type="xs:QName" />
+  </xs:complexType>
+</xs:schema>

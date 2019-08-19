@@ -1,0 +1,69 @@
+@startuml Versagen-Server
+class Versagen 
+class PlayerManager
+class WorldstateManager
+class VersaXMLParser
+class GamestateManager
+class DbManager
+class VersaIO
+class WebServer
+abstract class VersaGame
+
+class Player
+class Worldstate
+class Gamestate
+
+class GameEntity
+class GameLocation
+class GameItem
+
+class GameInteraction
+class GameEffect
+class GameStat
+
+interface IGameInput
+abstract class GameInput
+interface IAuthManager
+interface IGameEvents
+class GameEvents
+
+Versagen --> PlayerManager
+Versagen --> WorldstateManager
+Versagen o-> VersaXMLParser
+Versagen --> GamestateManager
+Versagen --> DbManager
+Versagen o--> VersaIO
+Versagen o--> VersaGame
+WebServer <-- Versagen
+
+IAuthManager <-- PlayerManager
+
+GamestateManager *--> Gamestate
+WorldstateManager --> Worldstate
+PlayerManager *--> Player
+PlayerManager *--> IAuthManger
+
+VersaIO *--> IGameInput
+VersaIO *--> IGameEvents
+
+IGameInput ..|> GameInput
+IGameEvents ..|> GameEvents
+
+Worldstate o-> GameEntity 
+Worldstate o-> GameLocation
+Gamestate <-Worldstate
+
+GameStat <-o GameEntity
+GameItem <--o GameEntity
+
+GameLocation o-> GameEntity
+GameLocation o-> GameItem
+
+GameLocation o--> GameEffect
+GameEntity o-> GameEffect
+GameEffect <--o GameInteraction
+GameEntity o--> GameInteraction
+
+VersaGame o--> GameInteraction
+
+@enduml

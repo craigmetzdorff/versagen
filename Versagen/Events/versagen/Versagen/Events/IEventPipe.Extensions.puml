@@ -1,0 +1,7 @@
+@startuml
+class EventPipeExtensions <<static>> {
+    + {static} BeginExclusiveOperation(pipe:IEventPipe) : IDisposable
+    + {static} Lock(scheduler:TaskScheduler, cancelWaiToken:CancellationToken) : IDisposable
+    + {static} <<async>> LockAsync(scheduler:TaskScheduler, cancelWaiToken:CancellationToken) : Task<IDisposable>
+}
+@enduml

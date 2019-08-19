@@ -1,0 +1,32 @@
+@startuml
+class VersaCommand {
+    <<internal>> FindCommand(p:Func<object, object>) : object
+    # VersaCommand(b:Builder)
+}
+class "VersaCommandBase`1"<T> {
+}
+class Builder {
+    + Name : string <<get>> <<set>>
+    + CallLine : string <<get>> <<set>>
+    + Description : string <<get>> <<set>>
+    + RunSynchronously : bool <<get>> <<set>>
+    + SplitOn : char <<get>> <<set>> = ' '
+    + Build() : VersaCommand
+    + UsingTransientClass(methodToCall:Func<T, Func<CommandContext, Task>>, additionalConstructorArgs:object[]) : ICommandBuilder<CommandContext, VersaCommand>
+}
+class "ICommandBuilder`2"<T1,T2> {
+}
+class "Func`2"<T1,T2> {
+}
+class "List`1"<T> {
+}
+"VersaCommandBase`1" "<CommandContext>" <|-- VersaCommand
+VersaCommand +-- Builder
+"ICommandBuilder`2" "<CommandContext,VersaCommand>" <|-- Builder
+Builder --> "Do<CommandContext,Task>" "Func`2"
+Builder --> "Predicates<IConditionalRule>" "List`1"
+Builder --> "ChatContext" ECommandRunSpace
+Builder o-> "RequiredPrivilegdes" EVersaPerms
+Builder --> "TansientClassNeeded" Type
+Builder --> "TransientClassMethod<IDisposable,Func<CommandContext, Task>>" "Func`2"
+@enduml

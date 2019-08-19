@@ -1,0 +1,9 @@
+@startuml
+interface IKeepEventAlive {
+    HoldOffOnCompletion : bool <<get>> <<set>>
+    IsComplete : bool <<get>>
+    DoComplete() : void
+}
+IAwaitable <|-- IKeepEventAlive
+IDisposable <|-- IKeepEventAlive
+@enduml

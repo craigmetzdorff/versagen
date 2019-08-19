@@ -1,0 +1,12 @@
+@startuml
+class SingleTaskScheduler {
+    - RunnerShim(state:object) : Task<bool>
+    # <<override>> GetScheduledTasks() : IEnumerable<Task>
+    # <<override>> QueueTask(task:Task) : void
+    + <<override>> MaximumConcurrencyLevel : int <<get>>
+    # <<override>> TryExecuteTaskInline(task:Task, taskWasPreviouslyQueued:bool) : bool
+}
+TaskScheduler <|-- SingleTaskScheduler
+SingleTaskScheduler --> "UnderlyingScheduler" TaskScheduler
+SingleTaskScheduler o-> "currentTask" Task
+@enduml

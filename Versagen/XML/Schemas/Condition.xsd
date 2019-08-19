@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="Condition"
+    targetNamespace="versagen"
+    elementFormDefault="qualified"
+    xmlns="versagen"
+    xmlns:mstns="versagen"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+>
+  <xs:element name="someCondition" type="booleanCondition"/>
+  <!--This will have to be expanded upon in separate libraries for its own usage.-->
+  <xs:complexType name="condition" abstract="true">
+      <xs:sequence>
+        <!--Nested conditions anded, peer conditions or'd.-->
+        <xs:element name="subCondition" type="condition" minOccurs="0" maxOccurs="unbounded" />
+        <xs:element name="refName" type="xs:normalizedString" />
+        <!--TODO:Add decision structure to go along with this that has a condition, and success/failure rate.-->
+      </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="booleanCondition">
+    <xs:complexContent mixed="false">
+      <xs:extension base="condition">
+        <xs:sequence>
+          <xs:element name="value" type="xs:boolean"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+</xs:schema>

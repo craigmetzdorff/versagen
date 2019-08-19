@@ -1,0 +1,31 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+    <RootNamespace>Versagen</RootNamespace>
+    <LangVersion>7.3</LangVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Data\**" />
+    <Compile Remove="RulesOfNature\**" />
+    <EmbeddedResource Remove="Data\**" />
+    <EmbeddedResource Remove="RulesOfNature\**" />
+    <None Remove="Data\**" />
+    <None Remove="RulesOfNature\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="Events\EventWaiter.cs" />
+    <Compile Remove="Events\TaskEventRunner.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Versagen\Versagen.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.1" />
+  </ItemGroup>
+
+</Project>

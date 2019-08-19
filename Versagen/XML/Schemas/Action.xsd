@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="Action"
+    targetNamespace="versagen"
+    elementFormDefault="qualified"
+    xmlns="versagen"
+    xmlns:mstns="versagen"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+>
+  <xs:include schemaLocation="Effect.xsd" />
+  <xs:include schemaLocation="Description.xsd" />
+  <xs:include schemaLocation="Condition.xsd" />
+  <xs:include schemaLocation="Roll.xsd"/>
+  <xs:element name="action" type="action"/>
+  <xs:complexType name="action">
+    <xs:sequence>
+      <xs:element name="name" type="xs:QName" />
+      <xs:element name="description" type="description" />
+      <xs:element name="useCondition" type="condition" minOccurs="0" maxOccurs="unbounded" />
+      <xs:element name="targetEffect" type="effect" minOccurs="0" maxOccurs="unbounded" />
+      <xs:element name="selfEffect" type="effect" minOccurs="0" maxOccurs="unbounded" />
+      <xs:element name="hitChance" type="roll"/>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

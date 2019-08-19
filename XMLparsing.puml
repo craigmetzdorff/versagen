@@ -1,0 +1,29 @@
+@startuml XMLparser
+entity XML_File
+control XMLparser
+collections XMLmapRules
+collections WorldDict
+collections WorldTree
+collections CharacterList
+collections Storyboard
+collections PlayerList
+database GameDB
+
+XML_File -> XMLparser: Load
+XMLparser -> XMLparser: Deserialize to System.XMml
+XMLparser -> XMLparser: Iterate nodes
+XMLparser ->  XMLmapRules: Fetch possible translations for current node
+XMLmapRules -> XMLparser: Return node meaning and descriptor of what to look for within it.
+XMLparser -> XMLparser: Use returned ruleset to build relevant objects.
+XMLparser -> WorldDict: Check if items exist or not. If so, pull from there and just change as needed.
+XMLparser -> WorldTree: Add any new locations to the relevant places, or update if they exist.
+XMLparser -> CharacterList: Add any new named characters
+XMLparser -> Storyboard: Add any new scenarios to the database
+XMLparser -> PlayerList: If any player characters are added, update owner data.
+WorldDict -> GameDB: Save new data
+WorldTree -> GameDB: Save new data
+CharacterList -> GameDB: Save new data
+Storyboard -> GameDB: Save new data
+PlayerList -> GameDB: Save new data
+
+@enduml

@@ -1,0 +1,31 @@
+@startuml
+class KeepEventAliveSlim <<sealed>> {
+    + HoldOffOnCompletion : bool <<get>> <<set>>
+    + IsComplete : bool <<get>>
+    + DoComplete() : void
+    + Dispose() : void
+    + GetDisposer() : IDisposable
+    + GetAwaiter() : IAwaiter
+}
+class KeepEventAliveSlimDisposer {
+    <<internal>> KeepEventAliveSlimDisposer(slimIn:KeepEventAliveSlim)
+    + Dispose() : void
+}
+class KeepEventAliveAwaiter <<struct>> {
+    + OnCompleted(continuation:Action) : void
+    + UnsafeOnCompleted(continuation:Action) : void
+    + GetResult() : void
+    + IsCompleted : bool <<get>>
+}
+class "Lazy`1"<T> {
+}
+IKeepEventAlive <|-- KeepEventAliveSlim
+KeepEventAliveSlim o-> "completeSource<TaskCompletionSource<bool>>" "Lazy`1"
+KeepEventAliveSlim +-- KeepEventAliveSlimDisposer
+IDisposable <|-- KeepEventAliveSlimDisposer
+KeepEventAliveSlimDisposer --> "slim" KeepEventAliveSlim
+KeepEventAliveSlim +-- KeepEventAliveAwaiter
+IAwaiter <|-- KeepEventAliveAwaiter
+KeepEventAliveAwaiter --> "slim" KeepEventAliveSlim
+KeepEventAliveAwaiter --> "onCompletedThing" Action
+@enduml

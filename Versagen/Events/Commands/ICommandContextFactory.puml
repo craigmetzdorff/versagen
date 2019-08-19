@@ -1,0 +1,20 @@
+@startuml
+interface "ICommandContextFactory`4"<TContext,TBuilder,in TEvent,in TCommand> {
+    ConfigureBuilder(@event:TEvent, command:TCommand) : (TBuilder builder, Func<Task<(bool passed, IConditionalRule rule, string failureReason)>>[] additionalConditionFuncs)
+    ConfigureBuilderAsync(@event:TEvent, command:TCommand) : Task<(TBuilder builder, Func<Task<(bool passed, IConditionalRule rule, string failureReason)>>[] additionalConditionFuncs)>
+    FetchParameterInfo(builder:TBuilder, command:TCommand) : Task<TBuilder>
+    ConfigureBuilder(@event:TEvent) : (TBuilder builder, Func<Task<(bool passed, IConditionalRule rule, string failureReason)>>[] additionalConditionFuncs)
+    ConfigureBuilderAsync(@event:TEvent) : Task<(TBuilder builder, Func<Task<(bool passed, IConditionalRule rule, string failureReason)>>[] additionalConditionFuncs)>
+}
+interface "ICommandContextFactory`1"<TContext> {
+    ConfigureContext(@event:IEvent) : (TContext context, Func<Task<(bool passed, IConditionalRule rule, string failureReason)>>[] additionalConditionFuncs)
+    ConfigureContext(@event:IEvent, command:IVersaCommand<TContext>, matchedCommandLine:string) : (TContext context, Func<Task<(bool passed, IConditionalRule rule, string failureReason)>>[] additionalConditionFuncs)
+    ConfigureContextAsync(@event:IEvent) : Task<(TContext context, Func<Task<(bool passed, IConditionalRule rule, string failureReason)>>[] additionalConditionFuncs)>
+    ConfigureContextAsync(@event:IMessageEvent, command:IVersaCommand<TContext>, matchedCommandLine:string) : Task<(TContext context, Func<Task<(bool passed, IConditionalRule rule, string failureReason)>>[] additionalConditionFuncs)>
+}
+class "ICommandContextBuilder`1"<T> {
+}
+class "IVersaCommand`1"<T> {
+}
+"ICommandContextFactory`1" "<TContext>" <|-- "ICommandContextFactory`4"
+@enduml

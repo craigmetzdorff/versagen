@@ -1,0 +1,43 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <LangVersion>latest</LangVersion>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Data\Old_Implementation\**" />
+    <Compile Remove="Events_old\**" />
+    <Compile Remove="versagen\**" />
+    <EmbeddedResource Remove="Data\Old_Implementation\**" />
+    <EmbeddedResource Remove="Events_old\**" />
+    <EmbeddedResource Remove="versagen\**" />
+    <None Remove="Data\Old_Implementation\**" />
+    <None Remove="Events_old\**" />
+    <None Remove="versagen\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="Entity\stats.cs" />
+    <Compile Remove="VersaIO.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Abstractions" Version="2.2.4" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="2.2.0" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="2.2.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.1" />
+    <PackageReference Include="System.Collections.Immutable" Version="1.5.0" />
+    <PackageReference Include="System.Interactive" Version="3.2.0" />
+    <PackageReference Include="System.Interactive.Async" Version="3.2.0" />
+    <PackageReference Include="System.Interactive.Async.Providers" Version="3.2.0" />
+    <PackageReference Include="System.Interactive.Providers" Version="3.2.0" />
+    <PackageReference Include="System.Reactive" Version="4.1.5" />
+    <PackageReference Include="System.Threading.Tasks.Dataflow" Version="4.9.0" />
+  </ItemGroup>
+
+</Project>

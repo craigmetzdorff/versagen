@@ -1,0 +1,12 @@
+@startuml
+interface "IReaction`1"<in TEvent> {
+}
+interface IReaction {
+    Tag : string <<get>>
+}
+class "IObserver`1"<T> {
+}
+IReaction <|-- "IReaction`1"
+"IObserver`1" "<IEvent>" <|-- IReaction
+"IObserver`1" "<CommandRunStateEventArgs>" <|-- IReaction
+@enduml

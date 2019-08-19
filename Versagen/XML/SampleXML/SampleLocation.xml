@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<location xmlns="versagen" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="locationDefinition" name="sample">
+  <condition xsi:type="booleanCondition">
+    <subCondition xsi:type="booleanCondition">
+      <refName>TheOtherThing</refName>
+      <value>true</value>
+    </subCondition>
+    <refName>SampleEntryGroup</refName>
+    <value>true</value>
+  </condition>
+  <description>Ohhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh dear <substitution subvalue="targetEntity.Name"/> got buuuuuuuuuuuuuuuuurned!</description>
+  <sublocation entryCondition="SampleEntryGroup">
+    <description>Manamina.</description>
+    <displayName></displayName>
+    <narrationNotes></narrationNotes>
+  </sublocation>
+  <displayName>The Sample Place</displayName>
+  <narrationNotes>Do note about this.</narrationNotes>
+</location>

@@ -1,0 +1,25 @@
+@startuml
+class CommandGroup {
+    + FriendlyName : string <<get>>
+    + Prefix : string <<get>>
+    + Tag : string <<get>>
+    + Add(command:IVersaCommand) : void
+    + GetEnumerator() : IEnumerator<IVersaCommand>
+    + TryAdd(command:IVersaCommand) : bool
+    + TryFindCommand(externalPrefix:string, e:IMessageEvent, command:IVersaCommand, commandMatchString:string) : bool
+    + TryRemove(command:IVersaCommand) : bool
+    GetEnumerator() : IEnumerator
+    + CommandGroup(prefix:string, tag:string, friendlyName:string)
+}
+class "SortedDictionary`2"<T1,T2> {
+}
+class "ICollection`1"<T> {
+}
+class "IEnumerable`1"<T> {
+}
+ICommandGroup <|-- CommandGroup
+CommandGroup --> "_commands<string,IVersaCommand>" "SortedDictionary`2"
+CommandGroup --> "_subGroups<string,IVersaCommand>" "SortedDictionary`2"
+CommandGroup --> "Preconditions<IConditionalRule>" "ICollection`1"
+CommandGroup --> "AllCommandsFullPaths<IVersaCommand>" "IEnumerable`1"
+@enduml

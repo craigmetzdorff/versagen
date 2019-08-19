@@ -1,0 +1,17 @@
+@startuml
+interface ICrossCommandStorage {
+    AddService(key:Type, obj:object) : bool
+    TryAddService(serviceType:Type, obj:object) : bool
+    TryAddObject(obj:object) : bool
+    TryAddStringFlag(str:string) : bool
+    AddStringData(key:string, data:string) : bool
+    TryAddStringData(key:string, data:string) : bool
+    RemoveServices(key:Type, obj:IEnumerable<object>) : bool
+    RemoveObject(obj:object) : bool
+    RemoveStringFlag(str:string) : bool
+    RemoveStringData(key:string, data:string) : bool
+    HasStringFlag(str:string) : bool
+}
+IServiceProvider <|-- ICrossCommandStorage
+IDisposable <|-- ICrossCommandStorage
+@enduml

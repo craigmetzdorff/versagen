@@ -1,0 +1,12 @@
+@startuml
+class AsyncManualResetEvent {
+    + WaitAsync() : Task
+    + Set() : void
+    + Reset() : void
+    + Dispose() : void
+}
+class "TaskCompletionSource`1"<T> {
+}
+IDisposable <|-- AsyncManualResetEvent
+AsyncManualResetEvent o-> "m_tcs<bool>" "TaskCompletionSource`1"
+@enduml

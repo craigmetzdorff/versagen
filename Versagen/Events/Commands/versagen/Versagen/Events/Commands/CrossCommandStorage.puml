@@ -1,0 +1,23 @@
+@startuml
+class CrossCommandStorage {
+    + AddService(key:Type, obj:object) : bool
+    + AddStringData(key:string, data:string) : bool
+    + Dispose() : void
+    + GetService(serviceType:Type) : object
+    + HasStringFlag(str:string) : bool
+    + RemoveObject(obj:object) : bool
+    + RemoveServices(key:Type, obj:IEnumerable<object>) : bool
+    + RemoveStringData(key:string, data:string) : bool
+    + RemoveStringFlag(str:string) : bool
+    + TryAddObject(obj:object) : bool
+    + TryAddService(serviceType:Type, obj:object) : bool
+    + TryAddStringData(key:string, data:string) : bool
+    + TryAddStringFlag(str:string) : bool
+    + CrossCommandStorage(stringData:ConcurrentDictionary<string, string>, servicesWithin:ConcurrentDictionary<Type, ImmutableList<object>>)
+}
+class "ConcurrentDictionary`2"<T1,T2> {
+}
+ICrossCommandStorage <|-- CrossCommandStorage
+CrossCommandStorage --> "_servicesWithin<Type,ImmutableList<object>>" "ConcurrentDictionary`2"
+CrossCommandStorage --> "_stringData<string,string>" "ConcurrentDictionary`2"
+@enduml

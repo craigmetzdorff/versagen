@@ -1,0 +1,17 @@
+@startuml
+interface "IVersaCommand`1"<in T> {
+    Run(args:T, provider:IServiceProvider) : Task
+}
+interface IVersaCommand {
+    CommandLine : string <<get>>
+    Name : string <<get>>
+    Description : string <<get>>
+    RunSynchronously : bool <<get>>
+    SeparatorChar : char <<get>>
+    WithCommandLinePrefix(prependThis:string) : IVersaCommand
+    PrepRuleTasks(context:ICommandContext, provider:IServiceProvider) : IEnumerable<Func<Task<(bool passed, IConditionalRule rule, string failureReason)>>>
+}
+IVersaCommand <|-- "IVersaCommand`1"
+IVersaCommand --> "RequiredPrivilegdes" EVersaPerms
+IVersaCommand --> "RunSpace" ECommandRunSpace
+@enduml

@@ -1,0 +1,10 @@
+@startuml
+interface "IScenarioEventDistributor`1"<in TE> {
+    CreateScenario(provider:IServiceProvider, gameMasterID:VersaCommsID, partyIDs:VersaCommsID[]) : IScenario
+    BuildWorldScenario(provider:IServiceProvider) : IScenario
+    ProcessEvent(@event:TE) : Task
+}
+class "IQueryable`1"<T> {
+}
+"IScenarioEventDistributor`1" --> "Scenarios<IScenario>" "IQueryable`1"
+@enduml

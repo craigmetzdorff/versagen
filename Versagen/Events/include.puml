@@ -1,0 +1,10 @@
+@startuml
+!include .\.\versagen\Versagen\Events\AsyncManualResetEvent.puml
+!include .\.\versagen\Versagen\Events\EventPipe.puml
+!include .\.\versagen\Versagen\Events\IEvent.puml
+!include .\.\versagen\Versagen\Events\IEventPipe.puml
+!include .\.\versagen\Versagen\Events\IEventPreProcessor.puml
+!include .\.\versagen\Versagen\Events\IMessageEvent.puml
+!include .\.\versagen\Versagen\Events\MessageEvent.puml
+
+@enduml

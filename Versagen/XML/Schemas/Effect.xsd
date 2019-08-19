@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="Effect"
+    targetNamespace="versagen"
+    elementFormDefault="qualified"
+    xmlns="versagen"
+    xmlns:mstns="versagen"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+>
+  <xs:include schemaLocation="Condition.xsd" />
+  <xs:include schemaLocation="Description.xsd" />
+  <xs:include schemaLocation="Stat.xsd" />
+  <xs:include schemaLocation="Roll.xsd" />
+  <xs:element name="effect" type="effect"/>
+  <xs:complexType name="effect">
+    <xs:choice>
+      <xs:sequence>
+        <xs:element name="name" type="xs:QName"/>
+        <xs:element name="description" type="description"/>
+        <xs:element name="attachCondition" type="condition" minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element name="releaseCondition" type="condition" minOccurs="1" maxOccurs="unbounded" />
+        <xs:element name="statMod" type="stat" minOccurs="1" maxOccurs="unbounded"/>
+        <xs:element name="rollModifier" type="roll" minOccurs="0" />
+        <xs:element name="applyModifiersImmediately" type="xs:boolean" default="true" />
+      </xs:sequence>
+      <xs:element name="refName" type="xs:QName"/>
+    </xs:choice>
+  </xs:complexType>
+</xs:schema>
+
+

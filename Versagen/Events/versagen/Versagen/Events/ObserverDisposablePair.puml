@@ -1,0 +1,9 @@
+@startuml
+class ObserverDisposablePair {
+    + ObserverDisposablePair(@event:IEvent, ownDisposer:IDisposable)
+    + ObserverDisposablePair(evnt:IEvent)
+    + Deconstruct(evnt:IEvent, unsubber:IDisposable) : void
+}
+ObserverDisposablePair --> "Event" IEvent
+ObserverDisposablePair --> "Unsubscriber" IDisposable
+@enduml

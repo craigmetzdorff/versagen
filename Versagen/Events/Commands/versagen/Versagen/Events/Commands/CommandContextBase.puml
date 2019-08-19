@@ -1,0 +1,46 @@
+@startuml
+class CommandContext {
+    + ScenarioID : ulong <<get>>
+    + NewEventsAllowed : bool <<get>>
+    + AllowNewEvents() : void
+    + Message : string <<get>>
+    + MessageRemainder : string <<get>>
+    # CommandContext(b:ICommandContextBuilder<CommandContext>)
+    - disposedValue : bool = false
+    # <<virtual>> Dispose(disposing:bool) : void
+    Dispose() : void
+}
+class Builder {
+    + CommandString : string <<get>> <<set>>
+    + Message : string <<get>> <<set>>
+    + ScenarioID : ulong <<get>> <<set>>
+    + MessageWithoutCommand : string <<get>> <<set>>
+    + InitialAsyncState : bool <<get>> <<set>>
+    + Build() : CommandContext
+}
+class "IVersaCommand`1"<T> {
+}
+class "ICommandContextBuilder`1"<T> {
+}
+ICommandContext <|-- CommandContext
+CommandContext --> "Command<CommandContext>" "IVersaCommand`1"
+CommandContext --> "ActingEntity" IEntity
+CommandContext --> "User" IPlayer
+CommandContext --> "WorldData" IWorldTree
+CommandContext --> "OriginTerm" IVersaWriter
+CommandContext --> "UserTerm" IVersaWriter
+CommandContext --> "AllowEventAsyncAction" Action
+CommandContext --> "GMTerm" IVersaWriter
+CommandContext --> "Pipe" IEventPipe
+CommandContext +-- Builder
+"ICommandContextBuilder`1" "<CommandContext>" <|-- Builder
+Builder --> "Command<CommandContext>" "IVersaCommand`1"
+Builder --> "Pipe" IEventPipe
+Builder --> "User" IPlayer
+Builder --> "WorldData" IWorldTree
+Builder --> "OriginTerm" IVersaWriter
+Builder --> "UserTerm" IVersaWriter
+Builder --> "GMTerm" IVersaWriter
+Builder --> "SignalAsyncOkay" Action
+Builder --> "ActingEntity" IEntity
+@enduml

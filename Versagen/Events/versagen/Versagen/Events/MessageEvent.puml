@@ -1,0 +1,19 @@
+@startuml
+class MessageEvent {
+    + IgnoreThis : bool <<get>> <<set>>
+    + IsSystemMessage : bool <<get>> <<set>>
+    + FullMessage : string <<get>> <<set>>
+}
+class "UnionType`2"<T1,T2> {
+}
+class "IList`1"<T> {
+}
+IMessageEvent <|-- MessageEvent
+MessageEvent --> "SourcePipe" IEventPipe
+MessageEvent --> "Services" IServiceProvider
+MessageEvent --> "Scenario<VersaCommsID,IScenario>" "UnionType`2"
+MessageEvent --> "Terminal<VersaCommsID,IVersaWriter>" "UnionType`2"
+MessageEvent --> "Player<VersaCommsID,IPlayer>" "UnionType`2"
+MessageEvent --> "Entity<VersaCommsID,IEntity>" "UnionType`2"
+MessageEvent o-> "EventSpecificCommands<ICommandGroup>" "IList`1"
+@enduml

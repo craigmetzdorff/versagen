@@ -1,0 +1,20 @@
+@startuml
+interface "ICommandContextBuilder`1"<T> {
+    ScenarioID : ulong <<get>> <<set>>
+    CommandString : string <<get>> <<set>>
+    Message : string <<get>> <<set>>
+    MessageWithoutCommand : string <<get>> <<set>>
+    InitialAsyncState : bool <<get>> <<set>>
+    Build() : T
+}
+class "IVersaCommand`1"<T> {
+}
+"ICommandContextBuilder`1" --> "Pipe" IEventPipe
+"ICommandContextBuilder`1" --> "User" IPlayer
+"ICommandContextBuilder`1" --> "Command<T>" "IVersaCommand`1"
+"ICommandContextBuilder`1" --> "OriginTerm" IVersaWriter
+"ICommandContextBuilder`1" --> "UserTerm" IVersaWriter
+"ICommandContextBuilder`1" --> "GMTerm" IVersaWriter
+"ICommandContextBuilder`1" --> "SignalAsyncOkay" Action
+"ICommandContextBuilder`1" --> "ActingEntity" IEntity
+@enduml

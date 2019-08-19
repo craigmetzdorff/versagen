@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="Resource"
+    targetNamespace="versagen"           
+    elementFormDefault="qualified"
+    xmlns="versagen"
+    xmlns:mstns="versagen"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+>
+  <xs:include schemaLocation="Description.xsd"/>
+  <xs:element name="resource" type="resource"/>
+  <xs:complexType name="resource">
+    <xs:sequence>
+      <xs:element name="name" type="xs:QName" />
+      <xs:element name="contentDescription" type="description" />
+      <xs:element name="location" type="xs:anyURI" />
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

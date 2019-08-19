@@ -1,0 +1,7 @@
+@startuml
+interface "ILongRunningObserver`1"<in T> {
+}
+class "IObserver`1"<T> {
+}
+"IObserver`1" "<T>" <|-- "ILongRunningObserver`1"
+@enduml
